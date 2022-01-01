@@ -64,4 +64,18 @@ abstract class AbstractTest{ // 추상 클래스(추상 메서드를 포함한 �
 AbstractTest a = new AbstractTest(); // error : 추상 클래스의 인스턴스 생성 불가 
 ```
 
+## 접근 제어자(access modifier)
+- private : 같은 클래스 내에서만 접근 가능
+- default : 같은 패키지 내에서만 접근 가능
+- protected : 같은 패키지 내 + 다른 패키지의 자손 클래스에서 접근 가능
+- public : 접근 제한이 전혀 없음
 
+|제어자|같은 클래스|같은 패키지|자손 클래스</br>(다른 패키지)|전체|
+|--|--|--|--|--|
+|public|O|O|O|O|
+|protected|O|O|O||
+|default|O|O|||
+|private|O||||
+
+- public, default의 경우 클래스에만 붙을 수 있는 접근 제어자이다.
+- public, protected, default, private의 경우 메서드에 붙을 수 있는 접근 제어자이다.
