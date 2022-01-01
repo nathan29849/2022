@@ -79,3 +79,44 @@ AbstractTest a = new AbstractTest(); // error : 추상 클래스의 인스턴스
 
 - public, default의 경우 클래스에만 붙을 수 있는 접근 제어자이다.
 - public, protected, default, private의 경우 메서드에 붙을 수 있는 접근 제어자이다.
+
+---
+### private example
+- 접근 제어자를 이용한 캡슐화 예시
+- 접근 제어자를 상용하는 이유
+   - 외부로부터 데이터를 보호하기 위해서
+   - 외부에는 불필요한, 내부적으로만 사용되는, 부분을 감추기 위해서
+   - 범위는 좁을수록 좋다.
+```java
+package codechobo;
+
+public class TimeTest {
+    public static void main(String[] args) {
+        Time t = new Time();
+        t.setHour(-100);
+        System.out.println(t.getHour());
+        t.setHour(10);
+        System.out.println(t.getHour());
+
+    }
+}
+
+class Time{
+    // 외부 접근을 막고 메서드를 통해 간접 접근만 허용한다.
+    private int hour;
+    private int minute;
+    private int second;
+
+    public int getHour(){ return hour; }
+    public void setHour(int hour){
+        if (isNotValidHour(hour)){
+            this.hour = hour;
+        }
+
+    }
+
+    private boolean isNotValidHour(int hour){
+        return 0 <= hour && hour <= 23;
+    }
+}
+```
