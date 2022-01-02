@@ -34,7 +34,7 @@ class SmartTv extends Tv{
 ## 특징
 - 객체와 참조변수의 타입이 일치할 때와 일치하지 않을 때의 차이?
 > SmartTv s = new SmartTv();
-> Tv t = new SmartTv(); // 반대의 경우는 불가능하다.
+> Tv t = new SmartTv(); 
 - 자손 클래스의 멤버 변수를 사용할 수 없다.
 
 
