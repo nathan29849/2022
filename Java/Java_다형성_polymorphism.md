@@ -80,3 +80,22 @@ class Ambulance extends Car{
 ```
 
 - 핵심 :  참조변수가 가리키는 실제 인스턴스가 무엇인지가 중요함(해당 멤버의 개수를 넘어서면 안된다.)
+
+---
+## instanceof 연산자
+- 참조변수의 형변환 가능 여부 확읺에 사용. 가능하면 true로 반환
+- 형변환 전에 반드시 instanceof 로 확인해야 함.
+
+```java
+void doWork(Car c){
+   if (c instanceof FireEngine){
+      FireEngine fe = (FireEngine)c;
+      fe.water();
+   }
+}
+
+FireEngine fe = new FireEngine();
+System.out.println(fe instanceof Object); // true (조상 타입에 대해서도 참이 나옴)
+System.out.println(fe instanceof Car); // true (조상 타입에 대해서도 참이 나옴)
+System.out.println(fe instanceof FireEngine); // true
+```
