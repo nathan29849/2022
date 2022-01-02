@@ -38,7 +38,7 @@ class SmartTv extends Tv{
 - 자손 클래스의 멤버 변수를 사용할 수 없다.
 
 
-## 참조변수의 형변환
+## 참조변수의 형변환 (=리모컨 바꾸기)
 - 사용할 수 있는 멤버의 개수를 조절하는 것
 - 조상, 자손 관계의 참조변수는 서로 형변환 가능
 ```java
@@ -98,4 +98,83 @@ FireEngine fe = new FireEngine();
 System.out.println(fe instanceof Object); // true (조상 타입에 대해서도 참이 나옴)
 System.out.println(fe instanceof Car); // true (조상 타입에 대해서도 참이 나옴)
 System.out.println(fe instanceof FireEngine); // true
+```
+
+# 다형성의 장점
+- 1. 다형적 매개변수
+- 2. 하나의 배열로 여러 종류의 객체 다루기
+
+## 매개변수의 다형성   
+- 참조형 매개변수는 메서드 호출시, 자신과 같은 타입 또는 자손타입의 인스턴스를 넘겨줄 수 있다.
+```java
+package codechobo;
+
+import java.util.Arrays;
+
+public class ProductExample {
+    public static void main(String[] args) {
+
+        Buyer b = new Buyer();
+        TvModel tv = new TvModel();
+        ComputerModel com = new ComputerModel();
+
+        b.buy(tv);
+        System.out.println(b.money);
+        b.buy(com);
+        System.out.println(b.money);
+        System.out.println(Arrays.toString(b.cart));
+        TvModel a = (TvModel)b.cart[0];
+
+//        System.out.println(b.cart[0].power); Product 클래스의 참조변수이므로 형변환이 필요함.
+        System.out.println(a.power);
+    }
+}
+
+
+class Product{
+    int price; // 제품 가격
+    int bonusPoint; // 보너스 점수
+
+    Product(int price){
+        this.price = price;
+        bonusPoint = (int)(price/10.0);
+    }
+}
+
+class TvModel extends Product{
+    boolean power = true;
+    TvModel() {
+        super(300);
+    }
+}
+class ComputerModel extends Product{
+    ComputerModel(){
+        super(150);
+    }
+}
+
+class Buyer{ // 물건 사는 사람
+    int money = 1000;
+    int bonusPoint = 0;
+
+    Product[] cart = new Product[10];
+
+//    void buy(TvModel t){
+//        // 이렇게 매개변수를 설정하면 모든 클래스별로 오버로딩을 통해 메서드를 만들어야 한다.
+//        money -= t.price;
+//        bonusPoint += t.bonusPoint;
+//    }
+    int i = 0;
+    void buy(Product p){
+        if(money < p.price){
+            System.out.println("구매할 수 없습니다.");
+            return;
+        }
+        money -= p.price;
+        bonusPoint += p.bonusPoint;
+
+        cart[i++] = p;
+    }
+}
+
 ```
