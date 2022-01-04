@@ -1,4 +1,4 @@
-import cs01.binaryConvertor.*;
+package e7d849a05f7ba1ad554a5e92e5e2e6aa;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -20,8 +20,8 @@ public class Mission4 {
         int bitNumber = Integer.parseInt(scanner.nextLine());
         boolean bit = false;
         boolean[] byteA = new boolean[bitNumber];
-        for(int i = 0; i < bitNumber; i++){
-            System.out.print((i+1)+"번째 이진수를 입력하세요 >>> ");
+        for (int i = 0; i < bitNumber; i++) {
+            System.out.print((i + 1) + "번째 이진수를 입력하세요 >>> ");
             bit = Boolean.parseBoolean(scanner.nextLine());
             byteA[i] = bit;
         }

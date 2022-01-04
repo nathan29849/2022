@@ -1,6 +1,5 @@
 import java.util.Arrays;
 import java.util.Scanner;
-import cs01.binaryAdder.*;
 
 public class Mission2 {
     public static void main(String[] args) {
@@ -13,14 +12,14 @@ public class Mission2 {
         System.out.print("carry = ");
         boolean carryBit = scanner.nextBoolean();
 
-        Adder adder = new Adder();
+        e7d849a05f7ba1ad554a5e92e5e2e6aa.Adder adder = new e7d849a05f7ba1ad554a5e92e5e2e6aa.Adder();
         System.out.println("###### halfadder ######");
         boolean[] resultArr = adder.halfadder(bitA, bitB);
-        System.out.print("결과 = "+Arrays.toString(resultArr));
+        System.out.print("결과 = " + Arrays.toString(resultArr));
         System.out.println();
         System.out.println("###### fulladder ######");
         boolean[] resultArr2 = adder.fulladder(bitA, bitB, carryBit);
-        System.out.print("결과 = "+Arrays.toString(resultArr2));
+        System.out.print("결과 = " + Arrays.toString(resultArr2));
     }
 }
 
