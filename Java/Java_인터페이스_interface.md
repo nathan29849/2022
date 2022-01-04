@@ -70,3 +70,98 @@ abstract class Fighter implements Fightable{
 }
 ```
 
+---
+
+# 인터페이스를 이용한 다형성
+- 다형성? : **조상 참조 변수**로 자손 객체를 가리킬 수 있는 것.
+- 인터페이스도 구현 클래스의 부모? Yes!
+
+```java
+class Fighter extends Unit implements Fightable{
+   public void move(int x, int y);
+   public void attack(Fightable f);
+}
+
+Unit u = new Fighter();
+Fighteable f = new Fighter();
+```
+
+- 매개변수 타입이 인터페이스인 경우는 해당 인터페이스를 구현한 클래스의 인스턴스만 가능함!
+```java
+interface Fightable{
+   void move(int x, int y);
+   void attack(Fightable f); // Fightable 인터페이스를 구현한 클래스의 인스턴스만 가능
+}
+```
+
+- 인터페이스를 메서드의 리턴타입으로 지정할 수 있다.
+```java
+Fightable method(){ // Fightable 인터페이스를 구현한 클래스의 인스턴스를 반환
+   // ...
+   Fighter f = new Fighter(); // 정확히는 Fighter 클래스의 인스턴스이지만, Fightable로 형변환이 되므로 Fightable로도 반환이 가능하다.(조상 - 자손 관계라 형변환 가능)
+   return f;
+}
+
+Fightable f = method();
+```
+
+### Example
+```java
+package Example;
+
+abstract class Unit {
+    int x, y;
+
+    abstract void move(int x, int y);
+
+    void stop() {
+        System.out.println("멈춥니다.");
+    }
+}
+
+interface Fightable{
+    void move(int x, int y); // public abstract 생략
+    void attack(Fightable f); // public abstract 생략
+}
+
+class Fighter extends Unit implements Fightable{
+    public void move(int x, int y){ // 메서드 오버라이딩시 조상보다 접근제어자가 좁으면 안된다.
+        System.out.println("["+x+","+y+"]로 이동");
+    }
+    public void attack(Fightable f){
+        System.out.println(f+"를 공격");
+    }
+
+    public String toString(){
+        return "Another Fighter";
+    }
+
+    // 싸울 수 있는 상대를 불러온다.
+    Fightable getFightable(){ // Fightable 인터페이스를 구현한 클래스의 인스턴스를 반환한다.
+        Fighter f = new Fighter(); 
+        return f;
+    }
+
+}
+
+public class FighterTest {
+    public static void main(String[] args) {
+        Fighter f0 = new Fighter();
+        Fightable f = new Fighter();
+        Fightable f2 = f0.getFightable();
+//        Fightable f3 = f.getFightable(); f가 Fightable 타입이므로 getFightable 메서드 사용 불가
+
+        f2.move(777, 1000);
+
+        f.move(100, 200);
+        f.attack(new Fighter());
+
+        Unit u = new Fighter();
+        u.move(300, 200);
+        u.stop();
+    }
+}
+
+```
+
+
