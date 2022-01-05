@@ -1,0 +1,12 @@
+
+V	java:S125!"<This block of commented-out lines of code should be removed.(Ğ…Íïşÿÿÿÿ
+\
+java:S1126."AReplace this if-then-else statement by a single return statement.(¼õ²§ıÿÿÿÿ
+G
+java:S3599A",Use another way to initialize this instance.(Í–ºÿÿÿÿÿ
+t
+java:S1171A"YMove the contents of this initializer to a standard constructor or to field initializers.(Í–ºÿÿÿÿÿ
+t
+java:S1488"^Immediately return this expression instead of assigning it to the temporary variable "answer".(öõŞ
+7
+java:S1220""Move this file to a named package.8¹µë½â/
