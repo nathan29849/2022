@@ -164,4 +164,49 @@ public class FighterTest {
 
 ```
 
+---
+
+# 인터페이스의 장점
+
+- 두 대상(객체) 간의 '연결, 대화, 소통'을 돕는 '중간 역할'을 한다.
+- 선언(설계)와 구현을 분리시킬 수 있게 한다.
+- 클래스 A가 클래스 B를 사용할 때(A가 B에 의존),
+   - 인터페이스 덕분에 B가 변경되어도 A는 안바꿀 수 있게 된다.(느슨한 결합) <-> 인터페이스가 없으면 강한 결합이라고 봄
+   - 껍데기는 그대로 유지한 채, 알맹이를 바꿔넣는다고 생각하면 됨
+   
+![](https://images.velog.io/images/nathan29849/post/f9189cd0-3a61-443e-aa5a-6e8fe70cde72/image.png)   
+```java
+package Example;
+
+public class InterfaceExample {
+    public static void main(String[] args) {
+        A a = new A();
+        a.methodA(new B());
+        a.methodA(new C());
+    }
+}
+
+class A {
+    public void methodA(I i) {
+        i.methodB();
+    }
+}
+
+interface I {
+    void methodB(); // public abstract 생략
+}
+
+class B implements I {
+    public void methodB() {
+        System.out.println("methodB()");
+    }
+}
+
+class C implements I{
+    public void methodB() {
+        System.out.println("methodB() in C");
+    }
+}
+```
+
 
