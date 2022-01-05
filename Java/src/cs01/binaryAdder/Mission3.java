@@ -42,7 +42,7 @@ public class Mission3 {
         }
 
 
-        e7d849a05f7ba1ad554a5e92e5e2e6aa.Adder adder = new e7d849a05f7ba1ad554a5e92e5e2e6aa.Adder();
+        Adder adder = new Adder();
         boolean[] answer = adder.byteadder(byteA, byteB);
         System.out.println("byteA = " + Arrays.toString(byteA));
         System.out.println("byteB = " + Arrays.toString(byteB));

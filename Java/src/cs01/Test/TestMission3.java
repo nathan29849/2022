@@ -1,5 +1,3 @@
-package e7d849a05f7ba1ad554a5e92e5e2e6aa;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

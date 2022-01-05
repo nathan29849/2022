@@ -1,9 +1,7 @@
-package e7d849a05f7ba1ad554a5e92e5e2e6aa;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static e7d849a05f7ba1ad554a5e92e5e2e6aa.Mission1.*;
+import static binaryAdder.Mission1.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestMission1 {
