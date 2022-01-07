@@ -209,4 +209,21 @@ class C implements I{
 }
 ```
 
+## 인터페이스의 장점
+- 개발 시간을 단축할 수 있다. 
+- 변경에 유리한 유연한 설계가 가능하다.
+- 표준화가 가능하다. (ex. JDBC - 자바 표준 데이터베이스 인터페이스)
+- 서로 관계없는 클래스들을 관계를 맺어줄 수 있다.
 
+![](https://images.velog.io/images/nathan29849/post/2d160286-bac2-4ab1-8b37-c4e89cb24a0b/image.png)
+- 위의 메서드들을 하나의 메서드로만 구현이 가능하다.
+```java
+void repair(Repairable r){
+   if (r instanceof Unit) {
+      Unit u = (Unit)r;
+      while(u.hitPoint != u.MAX_HP){
+            u.hitPoint++;
+         }
+   }
+}
+```
