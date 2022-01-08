@@ -47,3 +47,8 @@ $ ssh [username]@[ip] -p 2222
 
 ![](https://images.velog.io/images/nathan29849/post/2ac81042-bcab-41b7-8078-8e0841552934/image.png)
 
+- 만약 이 과정에서 Connection refused 또는 Operation timed out 오류가 뜬다면 포트 포워딩을 다시 확인해봐야한다. (ubuntu : `ifconfig`, mac : `ipconfig getifaddr en0` 을 통해 ip 확인 가능)
+- 나는 재부팅하고 다시 똑같은 ip로 돌렸는데, 아마 재부팅을 하면 연결상태도 다시 잡히면서 local의 en0 ip 주소가 달라지는 것 같다.
+- 만약 포트 포워딩이 안된다면 `가상머신 설정 > 네트워크 > 어댑터에 브릿지 연결`을 진행해줘야 한다.
+   - 자세한건 이 링크를 타고 들어가서 읽어보자.
+   - https://hahaite.tistory.com/283
