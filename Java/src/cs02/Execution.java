@@ -20,7 +20,8 @@ public class Execution {
             String command = fullCommand[0];
             if (command.equals("render")){
                 render();
-                continue;
+                System.out.println("영상 렌더링이 완료되었습니다. 실행을 종료합니다.");
+                break;
             }
 
 

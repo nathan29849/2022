@@ -1,57 +1,45 @@
 package cs02;
 
-import java.util.ArrayList;
+public class VideoDataStructure {
+    private String id; // 고유한 id 값
+    private String title = "제목"; // 제목 문구
+    private static int title_id = 1; // 제목 뒤에 붙는 숫자 (1부터 시작)
+    private byte playTime; // 영상 재생 시간(초단위) (1초 ~ 15초 사이의 값만 들어가므로 byte 자료형을 사용)
+    private VideoDataStructure next = null;// 다음 영상 정보에 대한 연결(초기값 null)
 
-public class VideoData {
-    private static ArrayList<VideoDataStructure> bascket;
+    VideoDataStructure(String id, byte playTime) {
+        this.id = id;
+        this.title += title_id; // ex. 제목1, 제목2, 제목3, ...
+        this.playTime = playTime; // 재생 시간은 랜덤하게 1초에서 15초 내로 지정한다. (이부분 다시 고려해야할 듯 - 생성자 만들때 제한할 수 있는 방법이 있는가..)
+        // 다음 영상 정보는 우선 지정하지 않는다.
+        title_id++;
 
-    public static void main() {
-        bascket = new ArrayList<>();
-        for (int i = 0; i < 13; i++) {
-            byte randomNumber = (byte) (Math.random() * 15 + 1); // 0<= N < 16
-            String id;
-            while(true){
-                id = createId(); // id 4자리 소문자 알파벳 조합(랜덤생성)
-                if (!(checkId(id))){
-                    break;
-                }
-            }
-            VideoDataStructure video = new VideoDataStructure(id, randomNumber); // videoData 객체 생성
-            bascket.add(video); // 생성 객체를 콜렉션에 보관
-        }
-        System.out.println("---영상클립---");
-        for (int j = 0; j < bascket.size(); j++) {
-            VideoDataStructure videoInfo = bascket.get(j);
-            videoInfo.printInfo();
-        }
     }
 
-    private static String createId() {
-        String id = "";
-        for (int j = 0; j < 4; j++) {
-            id += (char) (Math.random() * 26 + 97); // ascii code
-        }
-        return id;
+    void link(VideoDataStructure vd) {
+        this.next = vd;
     }
 
-    public static boolean checkId(String id){
-        for (int i=0; i< bascket.size(); i++){
-            String nowId = bascket.get(i).id;
-            if(nowId.equals(id)){
-                return true;
-            }
+    boolean checkNext() {
+        if (this.next == null) {
+            return false;
         }
-        return false;
+        return true;
     }
 
-    public static VideoDataStructure searchId(String id){
-        VideoDataStructure now;
-        for (int i=0; i< bascket.size(); i++){
-            now = bascket.get(i);
-            if(now.id.equals(id)){
-                return now;
-            }
-        }
-        return null;
+    void printInfo() {
+        System.out.println(this.title + " (" + this.id + ") : " + this.playTime); // ex. 제목1(abcd):12
+    }
+
+    String getId(){
+        return this.id;
+    }
+
+    byte getPlayTime(){
+        return this.playTime;
+    }
+
+    VideoDataStructure getNext(){
+        return this.next;
     }
 }

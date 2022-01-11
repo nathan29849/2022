@@ -3,8 +3,8 @@ package cs02;
 import static cs02.VideoData.*;
 
 public class Editor {
-    public static VideoDataStructure FirstVideo = null; // head
-    public static VideoDataStructure LastVideo = null; // tail
+    public static VideoDataStructure FirstVideo = null; // head.
+    public static VideoDataStructure LastVideo = null; // tail.
 
     public static void add(String id) {
         if (!(checkId(id))){
@@ -48,7 +48,7 @@ public class Editor {
                 break;
             }
             priorVideo = nowVideo; // 현재 비디오 -> 이전 비디오
-            nowVideo = nowVideo.next; // 다음 비디오 -> 현재 비디오
+            nowVideo = nowVideo.getNext(); // 다음 비디오 -> 현재 비디오
             i++;
         }
         if (priorVideo != null){
@@ -57,6 +57,10 @@ public class Editor {
         } else {
             video.link(FirstVideo);
             FirstVideo = video;
+        }
+
+        if(countVideos() <= location){
+            LastVideo = video;
         }
         printVideos();
     }
@@ -71,19 +75,19 @@ public class Editor {
         VideoDataStructure nowVideo = FirstVideo;
         boolean flag = false;
         while (nowVideo != null) {
-            if (nowVideo.id.equals(id)) {
+            if (nowVideo.getId().equals(id)) {
                 flag = true;
                 break;
             }
             priorVideo = nowVideo;
-            nowVideo = nowVideo.next;
+            nowVideo = nowVideo.getNext();
         }
 
         if (flag){
             if (cnt == 1){
                 FirstVideo = null;
             } else {
-                priorVideo.link(nowVideo.next); // 이전 데이터의 next에 다음 데이터를 넣기
+                priorVideo.link(nowVideo.getNext()); // 이전 데이터의 next에 다음 데이터를 넣기
                 nowVideo.link(null);
             }
         } else {
@@ -100,8 +104,8 @@ public class Editor {
         VideoDataStructure now = FirstVideo;
         while (now != null) {
             numberOfVideos++;
-            videoLength += now.playTime;
-            now = now.next;
+            videoLength += now.getPlayTime();
+            now = now.getNext();
         }
         System.out.println("영상클립: " + numberOfVideos + "개");
         System.out.println("전체길이: " + videoLength + "sec");
@@ -111,8 +115,8 @@ public class Editor {
         VideoDataStructure now = FirstVideo;
         System.out.print("|---");
         while (now != null) {
-            System.out.print("[" + now.id + ", " + now.playTime + "sec]---");
-            now = now.next;
+            System.out.print("[" + now.getId() + ", " + now.getPlayTime() + "sec]---");
+            now = now.getNext();
         }
         System.out.println("[end]");
     }
@@ -121,7 +125,7 @@ public class Editor {
         int cnt = 0;
         VideoDataStructure now = FirstVideo;
         while(now != null){
-            now = now.next;
+            now = now.getNext();
             cnt++;
         }
         return cnt;
@@ -130,10 +134,10 @@ public class Editor {
     private static boolean existCheck(String id){
         VideoDataStructure now = FirstVideo;
         while (now != null){
-            if (now.id.equals(id)){
+            if (now.getId().equals(id)){
                 return true;
             }
-            now = now.next;
+            now = now.getNext();
         }
         return false;
     }
