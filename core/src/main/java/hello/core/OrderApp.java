@@ -3,6 +3,7 @@ package hello.core;
 import hello.core.member.Grade;
 import hello.core.member.Member;
 import hello.core.member.MemberService;
+import hello.core.member.MemberServiceImpl;
 import hello.core.order.Order;
 import hello.core.order.OrderService;
 import org.springframework.context.ApplicationContext;
@@ -23,6 +24,9 @@ public class OrderApp {
         ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
         MemberService memberService = ac.getBean("memberService", MemberService.class); // MemberServiceImpl도 되는걸 보니 다형성이 적용이 되는 듯 싶다.
         OrderService orderService = ac.getBean("orderService", OrderService.class);
+
+        System.out.println(MemberService.class);
+        System.out.println(MemberServiceImpl.class);
 
 //        MemberService memberService = new MemberServiceImpl(null);
 //        OrderService orderService = new OrderServiceImpl(null, null);
