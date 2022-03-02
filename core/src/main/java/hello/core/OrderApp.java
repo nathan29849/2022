@@ -21,7 +21,7 @@ public class OrderApp {
 //        OrderService orderService = appConfig.orderService();
 
         ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
-        MemberService memberService = ac.getBean("memberService", MemberService.class);
+        MemberService memberService = ac.getBean("memberService", MemberService.class); // MemberServiceImpl도 되는걸 보니 다형성이 적용이 되는 듯 싶다.
         OrderService orderService = ac.getBean("orderService", OrderService.class);
 
 //        MemberService memberService = new MemberServiceImpl(null);
