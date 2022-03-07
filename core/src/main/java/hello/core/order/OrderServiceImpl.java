@@ -14,11 +14,11 @@ public class OrderServiceImpl implements OrderService{
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
 
-    @Autowired
-    public void init(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-        this.memberRepository = memberRepository;
-        this.discountPolicy = discountPolicy;
-    }
+//    @Autowired // 일반 메서드 주입.
+//    public void init(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+//        this.memberRepository = memberRepository;
+//        this.discountPolicy = discountPolicy;
+//    }
 
     @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
